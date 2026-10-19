@@ -38,10 +38,10 @@ resource "azurerm_linux_web_app" "librechat" {
     OPENAI_API_KEY           = var.openai_key
     MEILI_MASTER_KEY         = random_string.meilisearch_master_key.result
     MEILI_HOST               = "${azurerm_linux_web_app.meilisearch.name}.azurewebsites.net"
-    SEARCH=true
-    MEILI_NO_ANALYTICS=true
+    SEARCH                   = true
+    MEILI_NO_ANALYTICS       = true
 
-    APP_TITLE : var.app_title
+    APP_TITLE                = var.app_title
 
     AZURE_OPENAI_API_KEY = module.openai.openai_primary_key
     # AZURE_OPENAI_API_INSTANCE_NAME             = module.openai.account_name
@@ -60,7 +60,7 @@ resource "azurerm_linux_web_app" "librechat" {
     VITE_SHOW_GOOGLE_LOGIN_OPTION = false
     ALLOW_REGISTRATION            = true
 
-    SESSION_EXPIRY=(1000 * 60 * 60 * 24) * 7
+    SESSION_EXPIRY="604800000"
 
     DOCKER_REGISTRY_SERVER_URL          = "https://index.docker.io"
     WEBSITES_ENABLE_APP_SERVICE_STORAGE = false
@@ -113,13 +113,13 @@ resource "azurerm_linux_web_app" "meilisearch" {
     DOCKER_REGISTRY_SERVER_URL          = "https://index.docker.io"
     WEBSITES_ENABLE_APP_SERVICE_STORAGE = false
     DOCKER_ENABLE_CI                    = false
-    WEBSITES_PORT                       = 7700
-    PORT                                = 7700
+    WEBSITES_PORT                       = "7700"
+    PORT                                = "7700"
     DOCKER_CUSTOM_IMAGE_NAME            = "getmeili/meilisearch:latest"
   }
 
   site_config {
-    always_on = "true"
+    always_on = true
   }
 
   logs {
@@ -167,14 +167,14 @@ resource "azurerm_linux_web_app" "mongo" {
 
   app_settings = {
 
-    MONGO_INITDB_ROOT_USERNAME="root"
-    MONGO_INITDB_ROOT_PASSWORD=random_string.mongo_root_password.result
+    MONGO_INITDB_ROOT_USERNAME = "root"
+    MONGO_INITDB_ROOT_PASSWORD = random_string.mongo_root_password.result
 
     DOCKER_REGISTRY_SERVER_URL          = "https://index.docker.io"
     WEBSITES_ENABLE_APP_SERVICE_STORAGE = false
     DOCKER_ENABLE_CI                    = false
-    WEBSITES_PORT                       = 27017
-    PORT                                = 27017
+    WEBSITES_PORT                       = "27017"
+    PORT                                = "27017"
     DOCKER_CUSTOM_IMAGE_NAME            = "mongo:latest"
   }
 }
