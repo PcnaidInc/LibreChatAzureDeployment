@@ -10,13 +10,13 @@ variable "app_title" {
 
 variable "openai_key" {
   description = "OpenAI API Key"
-  default = ""
-  sensitive = true
+  default     = ""
+  sensitive   = true
 }
 
 variable "app_service_sku_name" {
   description = "size of the VM that runs the librechat app. F1 is free but limited to 1h per day."
-  default = "B1"
+  default     = "B1"
 }
 
 # variable "deployments" {
@@ -27,7 +27,7 @@ variable "app_service_sku_name" {
 #       name = string
 #       version = string
 #     })
-#     rai_policy_name = string  
+#     rai_policy_name = string
 #   }))
 #   default = [
 #     {
@@ -38,11 +38,11 @@ variable "app_service_sku_name" {
 #       }
 #       rai_policy_name = ""
 #     }
-#   ] 
+#   ]
 # }
 
 variable "public_network_access_enabled" {
   description = "(Optional) Specifies whether public network access is allowed for the Azure OpenAI Service"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }

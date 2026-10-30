@@ -1,5 +1,5 @@
 module "openai" {
-#   account_name        = "openai_service_librechat"
+  # account_name        = "openai_service_librechat"
   source              = "Azure/openai/azurerm"
   version             = "0.1.1"
   resource_group_name = azurerm_resource_group.this.name

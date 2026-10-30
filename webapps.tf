@@ -34,14 +34,14 @@ resource "azurerm_linux_web_app" "librechat" {
     WEBSITE_RUN_FROM_PACKAGE = "1"
     HOST                     = "0.0.0.0"
     # MONGO_URI                = azurerm_cosmosdb_account.librechat.connection_strings[0]
-    MONGO_URI                = "mongodb://root:${random_string.mongo_root_password.result}@${azurerm_linux_web_app.mongo.name}:27017/?authSource=admin"
-    OPENAI_API_KEY           = var.openai_key
-    MEILI_MASTER_KEY         = random_string.meilisearch_master_key.result
-    MEILI_HOST               = "${azurerm_linux_web_app.meilisearch.name}.azurewebsites.net"
-    SEARCH                   = true
-    MEILI_NO_ANALYTICS       = true
+    MONGO_URI          = "mongodb://root:${random_string.mongo_root_password.result}@${azurerm_linux_web_app.mongo.name}:27017/?authSource=admin"
+    OPENAI_API_KEY     = var.openai_key
+    MEILI_MASTER_KEY   = random_string.meilisearch_master_key.result
+    MEILI_HOST         = "${azurerm_linux_web_app.meilisearch.name}.azurewebsites.net"
+    SEARCH             = true
+    MEILI_NO_ANALYTICS = true
 
-    APP_TITLE                = var.app_title
+    APP_TITLE = var.app_title
 
     AZURE_OPENAI_API_KEY = module.openai.openai_primary_key
     # AZURE_OPENAI_API_INSTANCE_NAME             = module.openai.account_name
@@ -60,7 +60,7 @@ resource "azurerm_linux_web_app" "librechat" {
     VITE_SHOW_GOOGLE_LOGIN_OPTION = false
     ALLOW_REGISTRATION            = true
 
-    SESSION_EXPIRY="604800000"
+    SESSION_EXPIRY = "604800000"
 
     DOCKER_REGISTRY_SERVER_URL          = "https://index.docker.io"
     WEBSITES_ENABLE_APP_SERVICE_STORAGE = false
@@ -77,7 +77,7 @@ resource "azurerm_linux_web_app" "librechat" {
 # resource "azurerm_app_service_source_control" "sourcecontrol" {
 #   app_id                 = azurerm_linux_web_app.librechat.id
 #   repo_url               = "https://github.com/danny-avila/LibreChat"
-#   branch                 = "main"    
+#   branch                 = "main"
 #   type = "Github"
 
 #   # use_manual_integration = true
